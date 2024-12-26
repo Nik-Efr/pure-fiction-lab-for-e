@@ -20,7 +20,7 @@ public class Main {
             Brykun brykun = new Brykun("Brykun");
             Pegasik pegasik = new Pegasik("Pegasik");
 
-            SewingKit sewingKit = new SewingKit();
+            SewingKit sewingKit = new SewingKit(); // Создаем экземпляр SewingKit
             Pants pants1 = new Pants(100, 50);
             Jacket jacket = new Jacket(60);
             Hat hat = new Hat("green-yellow");
@@ -33,8 +33,9 @@ public class Main {
             Beret beret = hat.convertToBeret();
             FashionItem fashionBeret = new FashionItem(beret, Style.FASHIONABLE);
 
-            kaligula.wear(fashionPants);
-            kaligula.wear(fashionJacket);
+            // Используем SewingKit для шитья одежды
+            sewingKit.sewClothing(kaligula, fashionPants); // Подшиваем брюки
+            sewingKit.sewClothing(kaligula, fashionJacket); // Подшиваем пиджак
 
             // Надеваем берет
             pegasik.wear(fashionBeret);
@@ -57,7 +58,6 @@ public class Main {
             for (int i = 0; i < 6; i++) {
                 kaligula.wear(new FashionItem(new Pants(90, 40), Style.FASHIONABLE));
             }
-
 
         } catch (ClothingException e) {
             System.err.println("Checked Exception: " + e.getMessage());
