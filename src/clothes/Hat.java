@@ -8,22 +8,22 @@ public class Hat implements Clothing {
     }
 
     public Beret convertToBeret() {
-        System.out.println("Превращаем шляпу в берет...");
-        return new Beret(color);
+        System.out.println("Converting hat to beret...");
+        return new Beret(color); // Возвращаем новый объект Beret с тем же цветом
     }
 
     @Override
-    public void changeLength(int newLength) {
-        // Шляпа не имеет длины
+    public String getDescription() {
+        return "Hat (color: " + color + ")";
     }
 
     @Override
-    public void changeWidth(int newWidth) {
-        // Шляпа не имеет ширины
+    public void wear() {
+        System.out.println("Wearing " + getDescription());
     }
 
     @Override
-    public String toString() {
-        return "шляпа (цвет: " + color + ")";
+    public void remove() {
+        System.out.println("Removing " + getDescription());
     }
 }

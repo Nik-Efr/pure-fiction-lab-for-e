@@ -11,21 +11,21 @@ public class Beret implements Clothing {
 
     public void addDecoration(String decoration) {
         hasDecoration = true;
-        System.out.println("Прикрепил " + decoration + " к берету.");
+        System.out.println("Added " + decoration + " to the beret.");
     }
 
     @Override
-    public void changeLength(int newLength) {
-        // Берет не имеет длины
+    public String getDescription() {
+        return "Beret (color: " + color + ", decorated: " + hasDecoration + ")";
     }
 
     @Override
-    public void changeWidth(int newWidth) {
-        // Берет не имеет ширины
+    public void wear() {
+        System.out.println("Wearing " + getDescription());
     }
 
     @Override
-    public String toString() {
-        return "берет (цвет: " + color +  ")";
+    public void remove() {
+        System.out.println("Removing " + getDescription());
     }
 }

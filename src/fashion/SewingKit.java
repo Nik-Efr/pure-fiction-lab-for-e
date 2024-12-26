@@ -5,12 +5,12 @@ import exceptions.ClothingException;
 
 public class SewingKit {
 
-    public void sewClothing(Fashionista fashionista, Clothing clothingItem) {
+    public void sewClothing(Fashionista fashionista, FashionItem fashionItem) {
         try {
             System.out.println(fashionista.name + " подшивает одежду...");
-            fashionista.wear(clothingItem);
+            fashionista.wear(fashionItem); // Используем метод wear для FashionItem
         } catch (ClothingException e) {
-            System.err.println("ошибка с одеждой: " + e.getMessage());
+            System.err.println("Ошибка с одеждой: " + e.getMessage());
         }
     }
 }

@@ -4,8 +4,10 @@ import clothes.Jacket;
 import clothes.Pants;
 import exceptions.ClothingException;
 import exceptions.InvalidStyleException;
+import fashion.FashionItem;
 import fashion.FashionSociety;
 import fashion.SewingKit;
+import fashion.Style;
 import kents.Brykun;
 import kents.Kaligula;
 import kents.Pegasik;
@@ -14,31 +16,50 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            Kaligula kaligula = new Kaligula("Калигула");
-            Brykun brykun = new Brykun("Брыкун");
-            Pegasik pegasik = new Pegasik("Пегасик");
+            Kaligula kaligula = new Kaligula("Kaligula");
+            Brykun brykun = new Brykun("Brykun");
+            Pegasik pegasik = new Pegasik("Pegasik");
 
             SewingKit sewingKit = new SewingKit();
             Pants pants1 = new Pants(100, 50);
             Jacket jacket = new Jacket(60);
-            Hat hat = new Hat("желто-зеленый");
+            Hat hat = new Hat("green-yellow");
 
-            kaligula.wear(pants1);
-            kaligula.wear(jacket);
+            // Создаем FashionItems с указанием стиля
+            FashionItem fashionPants = new FashionItem(pants1, Style.FASHIONABLE);
+            FashionItem fashionJacket = new FashionItem(jacket, Style.EXTRAVAGANT);
 
-            // Преобразование шляпы в берет
+            // Преобразование шляпы в берет и создание FashionItem для берета
             Beret beret = hat.convertToBeret();
-            pegasik.wear(beret);
-            beret.addDecoration("пёрышко");
+            FashionItem fashionBeret = new FashionItem(beret, Style.FASHIONABLE);
 
-            // Создание общества моды
+            // Используем SewingKit для шитья одежды
+            sewingKit.sewClothing(kaligula, fashionPants);
+            sewingKit.sewClothing(kaligula, fashionJacket);
+
+            // Надеваем берет
+            pegasik.wear(fashionBeret);
+            beret.addDecoration("feather");
+
+            // Снятие одежды для демонстрации работы метода remove.
+            kaligula.remove(pants1);
+            kaligula.remove(jacket);
+
+            // Создание общества моды.
             FashionSociety fashionSociety = new FashionSociety();
             fashionSociety.addMember(kaligula);
             fashionSociety.addMember(brykun);
             fashionSociety.addMember(pegasik);
 
-            // Организация встречи общества моды
+
+            // Организация встречи общества моды.
             fashionSociety.organizeMeeting();
+
+            // Попробуем надеть больше одежды, чем разрешено
+            for (int i = 0; i < 6; i++) {
+                kaligula.wear(new FashionItem(new Pants(90, 40), Style.FASHIONABLE));
+            }
+
 
         } catch (ClothingException e) {
             System.err.println("Checked Exception: " + e.getMessage());

@@ -1,6 +1,7 @@
 package clothes;
 
 public interface Clothing {
-    void changeLength(int newLength);
-    void changeWidth(int newWidth);
+    String getDescription(); // Получить описание одежды
+    void wear();             // Надеть одежду
+    void remove();           // Снять одежду
 }

@@ -7,21 +7,18 @@ public class Jacket implements Clothing {
         this.sleeveLength = sleeveLength;
     }
 
-
     @Override
-    public void changeLength(int newLength) {
-        this.sleeveLength = newLength;
-        System.out.println("Длина рукава теперь " + newLength);
+    public String getDescription() {
+        return "Jacket (sleeve length: " + sleeveLength + ")";
     }
 
     @Override
-    public void changeWidth(int newWidth) {
-        // For jacket, width does not change in this context.
-        System.out.println("Нельзя пиджак сделать шире");
+    public void wear() {
+        System.out.println("Wearing " + getDescription());
     }
 
     @Override
-    public String toString() {
-        return "пиджак (длина рукава: " + sleeveLength + ")";
+    public void remove() {
+        System.out.println("Removing " + getDescription());
     }
 }

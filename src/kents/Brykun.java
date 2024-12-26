@@ -2,6 +2,7 @@ package kents;
 
 import clothes.Clothing;
 import exceptions.ClothingException;
+import fashion.FashionItem;
 import fashion.Fashionista;
 
 public class Brykun extends Fashionista {
@@ -11,11 +12,19 @@ public class Brykun extends Fashionista {
     }
 
     @Override
-    public void wear(Clothing clothingItem) throws ClothingException {
+    public void wear(FashionItem fashionItem) throws ClothingException {
         if (clothing.size() >= 5) { // Проверяем, не превышает ли количество одежды 5
-            throw new ClothingException("На нем слишком много одежды!");
+            throw new ClothingException("Cannot wear more than 5 clothing items!");
         }
-        clothing.add(clothingItem);
-        System.out.println(name + " носит " + clothingItem);
+        clothing.add(fashionItem.clothing());
+        fashionItem.clothing().wear(); // Вызываем метод wear у clothing
+        System.out.println(name + " wore " + fashionItem.clothing().getDescription() + " with style " + fashionItem.style());
+    }
+
+    @Override
+    public void remove(Clothing clothingItem) {
+        clothing.remove(clothingItem);
+        clothingItem.remove(); // Вызываем метод remove у clothing
+        System.out.println(name + " removed " + clothingItem.getDescription());
     }
 }

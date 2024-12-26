@@ -4,6 +4,7 @@ import clothes.Clothing;
 import clothes.Pants;
 import exceptions.ClothingException;
 import exceptions.InvalidStyleException;
+import fashion.FashionItem;
 import fashion.Fashionista;
 
 public class Kaligula extends Fashionista {
@@ -13,16 +14,22 @@ public class Kaligula extends Fashionista {
     }
 
     @Override
-    public void wear(Clothing clothingItem) throws ClothingException {
+    public void wear(FashionItem fashionItem) throws ClothingException {
         if (clothing.size() >= 5) { // Проверяем, не превышает ли количество одежды 5
-            throw new ClothingException("На нем слишком много одежды");
+            throw new ClothingException("Cannot wear more than 5 clothing items!");
         }
-        if (clothingItem instanceof Pants pants) {
-            if (pants.getLength() < 0 || pants.getWidth() < 0) {
-                throw new InvalidStyleException("Размер одежды не может быть отрицательным");
-            }
+        if (fashionItem.clothing() instanceof Pants pants && (pants.length < 0 || pants.width < 0)) {
+            throw new InvalidStyleException("Pants dimensions cannot be negative.");
         }
-        clothing.add(clothingItem);
-        System.out.println(name + " носит " + clothingItem);
+        clothing.add(fashionItem.clothing());
+        fashionItem.clothing().wear(); // Вызываем метод wear у clothing
+        System.out.println(name + " wore " + fashionItem.clothing().getDescription() + " with style " + fashionItem.style());
+    }
+
+    @Override
+    public void remove(Clothing clothingItem) {
+        clothing.remove(clothingItem);
+        clothingItem.remove(); // Вызываем метод remove у clothing
+        System.out.println(name + " removed " + clothingItem.getDescription());
     }
 }
