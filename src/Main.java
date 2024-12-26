@@ -33,9 +33,8 @@ public class Main {
             Beret beret = hat.convertToBeret();
             FashionItem fashionBeret = new FashionItem(beret, Style.FASHIONABLE);
 
-            // Используем SewingKit для шитья одежды
-            sewingKit.sewClothing(kaligula, fashionPants);
-            sewingKit.sewClothing(kaligula, fashionJacket);
+            kaligula.wear(fashionPants);
+            kaligula.wear(fashionJacket);
 
             // Надеваем берет
             pegasik.wear(fashionBeret);
@@ -50,7 +49,6 @@ public class Main {
             fashionSociety.addMember(kaligula);
             fashionSociety.addMember(brykun);
             fashionSociety.addMember(pegasik);
-
 
             // Организация встречи общества моды.
             fashionSociety.organizeMeeting();

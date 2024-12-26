@@ -1,5 +1,7 @@
 package clothes;
 
+import exceptions.InvalidStyleException;
+
 public class Hat implements Clothing {
     private String color;
 
@@ -25,5 +27,15 @@ public class Hat implements Clothing {
     @Override
     public void remove() {
         System.out.println("Removing " + getDescription());
+    }
+
+    @Override
+    public void validate() throws InvalidStyleException {
+        // Для шляпы валидация может быть не нужна, но можно оставить метод
+        // Если есть специфические условия, можно их добавить здесь
+        // Например, можно проверить, что цвет не пустой:
+        if (color == null || color.isEmpty()) {
+            throw new InvalidStyleException("Hat color cannot be null or empty.");
+        }
     }
 }

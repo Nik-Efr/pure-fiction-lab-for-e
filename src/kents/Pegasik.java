@@ -16,6 +16,10 @@ public class Pegasik extends Fashionista {
         if (clothing.size() >= 5) { // Проверяем, не превышает ли количество одежды 5
             throw new ClothingException("Cannot wear more than 5 clothing items!");
         }
+
+        // Валидация перед надеванием
+        fashionItem.clothing().validate();
+
         clothing.add(fashionItem.clothing());
         fashionItem.clothing().wear(); // Вызываем метод wear у clothing
         System.out.println(name + " wore " + fashionItem.clothing().getDescription() + " with style " + fashionItem.style());

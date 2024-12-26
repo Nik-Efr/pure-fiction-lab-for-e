@@ -1,5 +1,7 @@
 package clothes;
 
+import exceptions.InvalidStyleException;
+
 public class Jacket implements Clothing {
     private int sleeveLength;
 
@@ -20,5 +22,13 @@ public class Jacket implements Clothing {
     @Override
     public void remove() {
         System.out.println("Removing " + getDescription());
+    }
+
+    @Override
+    public void validate() throws InvalidStyleException {
+        // Проверка на корректность длины рукава
+        if (sleeveLength < 0) {
+            throw new InvalidStyleException("Sleeve length cannot be negative.");
+        }
     }
 }
