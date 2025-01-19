@@ -4,10 +4,7 @@ import clothes.Jacket;
 import clothes.Pants;
 import exceptions.ClothingException;
 import exceptions.InvalidStyleException;
-import fashion.FashionItem;
-import fashion.FashionSociety;
-import fashion.SewingKit;
-import fashion.Style;
+import fashion.*;
 import kents.Brykun;
 import kents.Kaligula;
 import kents.Pegasik;
@@ -16,9 +13,9 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            Kaligula kaligula = new Kaligula("Kaligula");
-            Brykun brykun = new Brykun("Brykun");
-            Pegasik pegasik = new Pegasik("Pegasik");
+            Kaligula kaligula = (Kaligula) FashionistaFactory.createFashionista(FashionistaType.KALIGULA);
+            Brykun brykun = (Brykun) FashionistaFactory.createFashionista(FashionistaType.BRYKUN);
+            Pegasik pegasik = (Pegasik) FashionistaFactory.createFashionista(FashionistaType.PEGASIK);
 
             SewingKit sewingKit = new SewingKit(); // Создаем экземпляр SewingKit
             Pants pants1 = new Pants(100, 50);
